@@ -9,7 +9,7 @@ def call(){
             }
             stage('Lint test') {
                 steps {
-                    pylint-fail-under --fail_under 5.0  ../**/*.py
+                    sh "pylint-fail-under --fail_under 5.0  ../**/*.py"
                 }
             }
             stage('Unit Test') {
