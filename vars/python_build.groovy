@@ -14,21 +14,13 @@ def call(){
             }
             stage('Unit Test') {
                 steps {
-                    sh 'python3 test_point_manager.py'
+                    def files = findFiles(glob:'test**manager.py')
+                    for file in files:
+                        sh 'python3 '+file
                 }
                 post {
                     always {
                         junit 'test-reports/*.xml'
-                    }
-                }
-            }
-            stage('Integration Test') {
-                steps {
-                    sh 'python3 test_points_api.py'
-                }
-                post {
-                    always {
-                        junit 'api-test-reports/*.xml'
                     }
                 }
             }
