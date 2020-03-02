@@ -14,10 +14,11 @@ def call(){
             }
             stage('Unit Test') {
                 steps {
-                    def files = findFiles(glob:'test**manager.py')
-                    for (int i=0; i< files.length; i++):
-                        sh 'python3 '+file
-                }
+                    files = findFiles glob:'test**manager.py'
+                    for (int i=0; i< files.length; i++){
+                        sh "python3 ${file.name}"
+                        }
+                    }
                 post {
                     always {
                         junit 'test-reports/*.xml'
